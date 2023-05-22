@@ -5,7 +5,7 @@ const board = (() => {
         [null, null, null]
     ];
     let turn = 'X';
-
+    let left = 9;
     const resetBoard = () => {
         board_array = [
             [null, null, null],
@@ -48,6 +48,7 @@ const board = (() => {
 
     const play = (r, c, elem) => {
         if (!board_array[r][c]) {
+            --left;
             board_array[r][c] = turn;
             elem.textContent = turn;
             elem.classList.remove('valid');
@@ -66,6 +67,16 @@ const board = (() => {
                 ++score;
                 score_elem.textContent = score; 
                 turn = 'X';
+                left = 9;
+                setTimeout(resetBoard, 100);
+            }
+            else if (left == 0) {
+                setTimeout(() => alert('TIE'), 100);
+                let score = +(ties.textContent);
+                ++score;
+                score_elem.textContent = score; 
+                turn = 'X';
+                left = 9;
                 setTimeout(resetBoard, 100);
             }
             else turn = (turn == 'X')? 'O' : 'X';

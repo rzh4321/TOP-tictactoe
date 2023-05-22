@@ -15,6 +15,7 @@ const board = (() => {
         const cells = document.querySelectorAll('.cell');
         for (let cell of cells) {
             cell.textContent = '';
+            cell.classList.add('valid');
         }
     }
 
@@ -83,8 +84,6 @@ for (let r = 0; r < 3; ++r) {
     for (let c = 0; c < 3; ++c) {
         let cell = document.createElement('div');
         cell.classList.add('cell', 'valid');
-        // cell.setAttribute('data-row', r);
-        // cell.setAttribute('data-col', c);
         cell.addEventListener('click', function(e) {
             board.play(r, c, cell);
         });

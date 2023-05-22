@@ -4,6 +4,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 30px;
+    font-size: 60px;
 }
 
 .board {
@@ -14,11 +15,15 @@ body {
 
 .cell {
     border: 2px solid black;
-    cursor: pointer;
+    font-size: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cell.valid:hover {
     background-color: lightgreen;
+    cursor: pointer;
 }
 
 .cell.hover {

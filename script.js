@@ -52,8 +52,6 @@ const board = (() => {
             board_array[r][c] = turn;
             elem.textContent = turn;
             elem.classList.remove('valid');
-            let turn_text = document.getElementById('turn');
-            turn_text.textContent = turn;
             if (checkWinner()) {
                 setTimeout(() => alert(`Player ${turn} has won`), 100);
                 let score_elem;
@@ -74,12 +72,17 @@ const board = (() => {
                 setTimeout(() => alert('TIE'), 100);
                 let score = +(ties.textContent);
                 ++score;
-                score_elem.textContent = score; 
+                ties.textContent = score; 
                 turn = 'X';
                 left = 9;
                 setTimeout(resetBoard, 100);
             }
-            else turn = (turn == 'X')? 'O' : 'X';
+            else {
+                turn = (turn == 'X')? 'O' : 'X'
+                let turn_text = document.getElementById('turn');
+                turn_text.textContent = turn;
+            };
+
         }
         else {
             alert('Position already taken');

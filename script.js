@@ -9,6 +9,7 @@ const board = (() => {
         if (!board_array[r][c]) {
             board_array[r][c] = turn;
             elem.textContent = turn;
+            elem.classList.remove('valid');
             turn = (turn == 'X')? 'O' : 'X';
         }
         else {

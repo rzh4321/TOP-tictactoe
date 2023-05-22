@@ -26,9 +26,6 @@ body {
     cursor: pointer;
 }
 
-.cell.hover {
-    background-color: red;
-}
 
 .score {
     font-size: 80px;

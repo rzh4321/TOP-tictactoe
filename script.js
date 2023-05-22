@@ -6,6 +6,18 @@ const board = (() => {
     ];
     let turn = 'X';
 
+    const resetBoard = () => {
+        board_array = [
+            [null, null, null],
+            [null, null, null],
+            [null, null, null]
+        ];
+        const cells = document.querySelectorAll('.cell');
+        for (let cell of cells) {
+            cell.textContent = '';
+        }
+    }
+
     const checkWinner = () => {
           // Check rows
         for (var i = 0; i < 3; i++) {
@@ -41,12 +53,7 @@ const board = (() => {
             let turn_text = document.getElementById('turn');
             turn_text.textContent = turn;
             if (checkWinner()) {
-                board_array = [
-                    [null, null, null],
-                    [null, null, null],
-                    [null, null, null]
-                ];
-                alert(`Player ${turn} has won`);
+                setTimeout(() => alert(`Player ${turn} has won`), 100);
                 let score_elem;
                 if (turn == 'X') {
                     score_elem = document.getElementById('x-score');
@@ -58,6 +65,7 @@ const board = (() => {
                 ++score;
                 score_elem.textContent = score; 
                 turn = 'X';
+                setTimeout(resetBoard, 100);
             }
             else turn = (turn == 'X')? 'O' : 'X';
         }

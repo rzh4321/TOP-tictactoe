@@ -5,12 +5,20 @@ const board = (() => {
         [null, null, null]
       ];
     let turn = 'X';
+
+    const checkWinner = () => {
+
+    }
+
     const play = (r, c, elem) => {
         if (!board_array[r][c]) {
             board_array[r][c] = turn;
             elem.textContent = turn;
             elem.classList.remove('valid');
             turn = (turn == 'X')? 'O' : 'X';
+            let turn_text = document.getElementById('turn');
+            turn_text.textContent = turn;
+            checkWinner();
         }
         else {
             alert('Position already taken');

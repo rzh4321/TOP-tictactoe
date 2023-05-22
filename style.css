@@ -15,11 +15,14 @@ body {
 .cell {
     border: 2px solid black;
     cursor: pointer;
-    background-color: red;
 }
 
 .cell.valid:hover {
     background-color: lightgreen;
+}
+
+.cell.hover {
+    background-color: red;
 }
 
 .score {

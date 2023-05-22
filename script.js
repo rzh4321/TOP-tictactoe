@@ -13,9 +13,14 @@ const board = (() => {
         }
         return false;
     }
-    const add = (a, b) => a + b;
-
     return {
 
     };
-  })();
+})();
+
+let container = document.querySelector('.board');
+for (let i = 0; i < 9; ++i) {
+    let cell = document.createElement('div');
+    cell.classList.add('cell', 'valid');
+    container.append(cell);
+}

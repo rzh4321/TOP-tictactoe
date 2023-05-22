@@ -1,13 +1,36 @@
 const board = (() => {
-    const board_array = [
+    let board_array = [
         [null, null, null],
         [null, null, null],
         [null, null, null]
-      ];
+    ];
     let turn = 'X';
 
     const checkWinner = () => {
+          // Check rows
+        for (var i = 0; i < 3; i++) {
+            if (!board_array[i].includes(null) && board_array[i][0] === board_array[i][1] && board_array[i][1] === board_array[i][2]) {
+                return true;
+            }
+        }
 
+        // Check columns
+        for (var j = 0; j < 3; j++) {
+            if (board_array[0][j] !== null && board_array[0][j] === board_array[1][j] && board_array[1][j] === board_array[2][j]) {
+                return true;
+            }
+        }
+
+        // Check diagonals
+        if (board_array[0][0] !== null && board_array[0][0] === board_array[1][1] && board_array[1][1] === board_array[2][2]) {
+            return true;
+        }
+        if (board_array[0][2] !== null && board_array[0][2] === board_array[1][1] && board_array[1][1] === board_array[2][0]) {
+            return true;
+        }
+
+        // No winner
+        return false;
     }
 
     const play = (r, c, elem) => {
@@ -15,10 +38,28 @@ const board = (() => {
             board_array[r][c] = turn;
             elem.textContent = turn;
             elem.classList.remove('valid');
-            turn = (turn == 'X')? 'O' : 'X';
             let turn_text = document.getElementById('turn');
             turn_text.textContent = turn;
-            checkWinner();
+            if (checkWinner()) {
+                board_array = [
+                    [null, null, null],
+                    [null, null, null],
+                    [null, null, null]
+                ];
+                alert(`Player ${turn} has won`);
+                let score_elem;
+                if (turn == 'X') {
+                    score_elem = document.getElementById('x-score');
+                }
+                else {
+                    score_elem = document.getElementById('o-score');
+                }
+                let score = +(score_elem.textContent);
+                ++score;
+                score_elem.textContent = score; 
+                turn = 'X';
+            }
+            else turn = (turn == 'X')? 'O' : 'X';
         }
         else {
             alert('Position already taken');

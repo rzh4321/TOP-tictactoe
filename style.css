@@ -15,6 +15,7 @@ body {
 .cell {
     border: 2px solid black;
     cursor: pointer;
+    background-color: red;
 }
 
 .cell.valid:hover {
